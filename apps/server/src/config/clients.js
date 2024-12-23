@@ -1,10 +1,16 @@
-import postgres from '@fastify/postgres'
 import redis from '@fastify/redis'
+import { PrismaClient } from '@prisma/client'
 
 export async function configureClients(app) {
-  // PostgreSQL setup
-  await app.register(postgres, {
-    connectionString: app.config.DATABASE_URL,
+  // Prisma setup
+  const prisma = new PrismaClient()
+
+  // Add Prisma to Fastify instance
+  app.decorate('prisma', prisma)
+
+  // Close Prisma on app shutdown
+  app.addHook('onClose', async (app) => {
+    await app.prisma.$disconnect()
   })
 
   // Redis setup with improved configuration
