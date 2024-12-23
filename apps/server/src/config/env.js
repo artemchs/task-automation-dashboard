@@ -3,7 +3,7 @@ import env from '@fastify/env'
 export async function configureEnv(app) {
   const schema = {
     type: 'object',
-    required: ['DATABASE_URL'],
+    required: ['DATABASE_URL', 'REDIS_URL', 'JWT_SECRET'],
     properties: {
       DATABASE_URL: {
         type: 'string',
@@ -12,6 +12,10 @@ export async function configureEnv(app) {
       REDIS_URL: {
         type: 'string',
         default: 'redis://localhost:6379',
+      },
+      JWT_SECRET: {
+        type: 'string',
+        default: 'supersecret',
       },
     },
   }

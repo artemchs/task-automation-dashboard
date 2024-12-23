@@ -2,6 +2,7 @@ import cors from '@fastify/cors'
 import swagger from '@fastify/swagger'
 import swaggerUI from '@fastify/swagger-ui'
 import rateLimit from '@fastify/rate-limit'
+import auth from '../hooks/auth.js'
 
 export async function configurePlugins(app) {
   // CORS
@@ -29,4 +30,6 @@ export async function configurePlugins(app) {
   await app.register(swaggerUI, {
     routePrefix: '/docs',
   })
+
+  await app.register(auth)
 }

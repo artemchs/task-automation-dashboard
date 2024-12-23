@@ -17,10 +17,10 @@ export async function healthRoutes(app) {
       },
     },
     async () => {
-      // Check database connections
-      const pgClient = await app.pg.connect()
       try {
-        await pgClient.query('SELECT 1')
+        // Check Prisma connection
+        await app.prisma.$queryRaw`SELECT 1`
+        // Check Redis connection
         await app.redis.ping()
 
         return {
@@ -37,8 +37,6 @@ export async function healthRoutes(app) {
           redis: false,
           timestamp: new Date().toISOString(),
         }
-      } finally {
-        pgClient.release()
       }
     }
   )
