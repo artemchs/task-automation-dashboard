@@ -1,9 +1,10 @@
+import { Text } from '@mantine/core'
 import React from 'react'
 
 export function Home() {
   return (
     <div>
-      <h1>Home</h1>
+      <Text size="md">Hello, World</Text>
     </div>
   )
 }
