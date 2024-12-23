@@ -12,12 +12,17 @@ import { MantineProvider } from '@mantine/core'
 // Pages
 import { Home } from './pages/Home'
 
+// Layouts
+import { DashboardLayout } from './components/layouts/DashboardLayout'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <MantineProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route element={<DashboardLayout />}>
+            <Route path="/" element={<Home />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </MantineProvider>
