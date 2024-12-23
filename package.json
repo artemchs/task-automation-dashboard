@@ -2,6 +2,6 @@
   "name": "task-automation-dashboard",
   "private": true,
   "scripts": {
-    "dev": "pnpm --parallel -r run dev"
+    "dev": "chmod +x scripts/start-database.sh scripts/start-redis.sh && ./scripts/start-database.sh && ./scripts/start-redis.sh && pnpm --parallel -r run dev"
   }
 }
